@@ -90,5 +90,5 @@ Senior SDET | Java • Selenium • Serenity • RestAssured
 
 ---
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-AlejandroBufarini-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/alejandrobufarini/)
-[![GitHub](https://img.shields.io/badge/GitHub-bufaale-blue?style=flat&logo=github)](
+[![GitHub](https://img.shields.io/badge/GitHub-bufaale-blue?style=flat&logo=github)]
 
