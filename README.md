@@ -4,7 +4,8 @@
 ![Run UI Tests](https://github.com/bufaale/automation-web-java-maven/actions/workflows/ui-tests.yml/badge.svg)
 ![Java](https://img.shields.io/badge/java-17-blue)
 ![Selenium](https://img.shields.io/badge/Selenium-4.10.0-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
+
 
 ## 🎯 About the Project
 
@@ -88,6 +89,6 @@ See `.github/workflows/ui-tests.yml` for full configuration.
 Senior SDET | Java • Selenium • Serenity • RestAssured
 
 ---
-
-![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-AlejandroBufarini-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/alejandrobufarini/)
+[![GitHub](https://img.shields.io/badge/GitHub-bufaale-blue?style=flat&logo=github)](
 
