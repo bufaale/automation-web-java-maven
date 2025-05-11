@@ -2,7 +2,10 @@ package starter.steps;
 
 import org.openqa.selenium.WebDriver;
 import starter.core.driver.DriverProvider;
+import starter.pages.PageBase;
 import starter.utils.*;
+
+import java.lang.reflect.Constructor;
 
 public abstract class StepBase {
 
@@ -30,13 +33,15 @@ public abstract class StepBase {
         return new ActionsUtils(getWebDriver());
     }
 
-    protected <T> T onPage(Class<T> pageClass) {
+    public <T extends PageBase> T onPage(Class<T> pageClass) {
         try {
-            return pageClass.getConstructor(WebDriver.class).newInstance(getWebDriver());
+            Constructor<T> constructor = pageClass.getConstructor(WebDriver.class);
+            return constructor.newInstance(getWebDriver());
         } catch (Exception e) {
             throw new RuntimeException("Failed to instantiate page: " + pageClass.getSimpleName(), e);
         }
     }
+
 
     public void navigateTo(String url) {
         getWebDriver().get(url);
