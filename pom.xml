@@ -100,42 +100,6 @@
                 </executions>
             </plugin>
 
-            <!-- Paralelización de runners -->
-            <plugin>
-                <groupId>com.github.temyers</groupId>
-                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generateRunners</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>generateRunners</goal>
-                        </goals>
-                        <configuration>
-                            <glue>
-                                <package>starter.steps</package>
-                                <package>starter.hooks</package>
-                            </glue>
-                            <featuresDirectory>src/test/resources/features</featuresDirectory>
-                            <outputDirectory>target/generated-test-sources</outputDirectory>
-                            <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                            <parallelScheme>SCENARIO</parallelScheme>
-                            <useTestNG>false</useTestNG>
-                            <namingScheme>simple</namingScheme>
-                            <namingPattern>Parallel{c}IT</namingPattern>
-                            <plugins>
-                                <plugin>
-                                    <name>pretty</name>
-                                </plugin>
-                            </plugins>
-
-                        </configuration>
-
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Necesario para agregar los test sources generados -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
