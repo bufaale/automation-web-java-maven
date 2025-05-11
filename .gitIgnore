@@ -28,7 +28,7 @@ Thumbs.db
 # === Reports ===
 site/
 serenity.properties
-target
+/target/
 target/surefire-reports/
 target/failsafe-reports/
 
