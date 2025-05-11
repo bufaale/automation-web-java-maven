@@ -89,4 +89,5 @@ Senior SDET | Java • Selenium • Serenity • RestAssured
 
 ---
 
-Licensed under the MIT License.
+![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
+
