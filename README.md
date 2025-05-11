@@ -1,7 +1,7 @@
 
 # 🧪 UI Automation Framework with Selenium + Cucumber + Serenity
 
-[![Run UI Tests](https://github.com/bufaale/automation-web-java-maven/actions/workflows/ui-tests.yml/badge.svg)](https://github.com/bufaale/automation-web-java-maven/actions/workflows/ui-tests.yml)
+![UI Tests](https://github.com/bufaale/automation-web-java-maven/actions/workflows/maven.yml/badge.svg)
 ![Java](https://img.shields.io/badge/java-17-blue)
 ![Selenium](https://img.shields.io/badge/Selenium-4.10.0-brightgreen)
 ![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
