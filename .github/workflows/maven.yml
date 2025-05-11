@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CI: true  # Habilita perfil temporal en ChromeDriver
+      CI: true
+      HEADLESS: true
 
     steps:
       - name: ⬇ Checkout repository
@@ -30,13 +31,13 @@ jobs:
             ~/.cache/selenium
           key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
 
-      - name: 📦 Set up Chrome
+      - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: 🔧 Grant execute permission to Maven wrapper (if used)
+      - name: 🔧 Make Maven wrapper executable (optional)
         run: chmod +x mvnw || true
 
-      - name: 🚀 Run tests with Maven
+      - name: 🚀 Run UI tests with Maven
         run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
 
       - name: 📤 Upload Serenity Report
@@ -45,3 +46,10 @@ jobs:
         with:
           name: serenity-report
           path: target/site/serenity
+
+      - name: 🪵 Upload surefire logs if test fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
