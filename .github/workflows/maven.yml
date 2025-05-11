@@ -1,0 +1,33 @@
+name: 🔧 Maven UI Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🧪 Run UI Tests with Maven
+        run: mvn clean verify
+
+      - name: 📊 Generate Serenity Report
+        run: mvn serenity:aggregate
+
+      - name: 📤 Upload Serenity Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: serenity-report
+          path: target/site/serenity
