@@ -1,6 +1,7 @@
+
 # 🧪 UI Automation Framework with Selenium + Cucumber + Serenity
 
-![Build Status](https://github.com/tu-usuario/ui-automation/actions/workflows/maven.yml/badge.svg)
+![Run UI Tests](https://github.com/bufaale/automation-web-java-maven/actions/workflows/ui-tests.yml/badge.svg)
 ![Java](https://img.shields.io/badge/java-17-blue)
 ![Selenium](https://img.shields.io/badge/Selenium-4.10.0-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -12,7 +13,9 @@ This is a professional UI automation framework built with **Selenium WebDriver**
 - ✅ Parallel execution at the scenario level using JUnit 5
 - 🧱 Clean architecture following SOLID principles
 - 🧪 Utilities and factories for easy and scalable test development
-- 💡 Easy extension for Screenplay pattern (already integrated)
+- 🎭 Integrated Screenplay pattern for advanced automation
+- 🧵 Thread-safe driver handling for concurrent runs in CI/CD
+- 🌐 Full compatibility with GitHub Actions
 
 ## 🚀 Technologies
 
@@ -45,12 +48,13 @@ resources/
 
 ## ✅ How to Run Tests
 
-```
-mvn clean verify
+```bash
+mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
 ```
 
 > To run a specific tag:
-```
+
+```bash
 mvn clean verify -Dcucumber.filter.tags="@Browser"
 ```
 
@@ -69,6 +73,14 @@ cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
 
 Serenity generates rich HTML reports under:  
 `target/site/serenity/index.html`
+
+If any test fails, Surefire logs are uploaded from:  
+`target/surefire-reports/`
+
+## 🛠 GitHub Actions CI
+
+Automated workflow runs on every `push` and `pull_request` to `main`.  
+See `.github/workflows/ui-tests.yml` for full configuration.
 
 ## 👨‍💻 Author
 
