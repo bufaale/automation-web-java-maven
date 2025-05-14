@@ -34,9 +34,6 @@ jobs:
       - name: 🌐 Set up Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: 🔧 Make Maven wrapper executable (optional)
-        run: chmod +x mvnw || true
-
       - name: 🚀 Run UI tests with Maven
         run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
 
