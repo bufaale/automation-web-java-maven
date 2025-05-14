@@ -1,0 +1,27 @@
+name: Deploy Serenity Report to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🧪 Run UI tests
+        run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
+
+      - name: 🌱 Deploy Serenity Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/serenity
+          publish_branch: gh-pages
