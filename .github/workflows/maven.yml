@@ -35,7 +35,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: 🚀 Run UI tests with Maven
-        run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
+        run: mvn clean verify serenity:aggregate -Dwebdriver.chrome.driver=$(which chromedriver)
 
       - name: 📸 Upload screenshots on failure
         if: failure()
