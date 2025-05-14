@@ -32,7 +32,11 @@
             <artifactId>serenity-cucumber</artifactId>
             <version>${serenity.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit5</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
         <!-- Cucumber + JUnit Platform -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -133,5 +137,10 @@
             </plugin>
 
         </plugins>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
     </build>
 </project>
