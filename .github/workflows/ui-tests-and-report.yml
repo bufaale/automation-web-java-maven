@@ -1,0 +1,70 @@
+name: UI Tests and Serenity Report
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      HEADLESS: true
+    steps:
+      - name: ⬇ Checkout
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 💾 Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.cache/selenium
+          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+
+      - name: 🌐 Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: 🚀 Run UI Tests
+        run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
+
+      - name: 📤 Upload raw Serenity data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-serenity-data
+          path: target/site/serenity
+
+  deploy:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Checkout
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Serenity artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: raw-serenity-data
+          path: target/site/serenity
+
+      - name: 📊 Generate Serenity HTML
+        run: mvn serenity:aggregate
+
+      - name: 🌱 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/serenity
+          publish_branch: gh-pages
