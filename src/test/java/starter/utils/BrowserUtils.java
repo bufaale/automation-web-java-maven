@@ -60,8 +60,6 @@ public class BrowserUtils {
         driver.switchTo().window(tabs.get(newIndex));
     }
 
-
-    // Refrescar la página
     public void refresh() {
         driver.navigate().refresh();
     }
