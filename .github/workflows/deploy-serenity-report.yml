@@ -12,9 +12,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      CI: true
+      HEADLESS: true
+
     steps:
       - name: ⬇ Checkout repo
         uses: actions/checkout@v4
+
+      - name: 🧪 Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🌐 Set up Chrome
+        uses: browser-actions/setup-chrome@v1
 
       - name: 🚀 Run UI tests with Maven
         run: mvn clean verify serenity:aggregate -Dwebdriver.chrome.driver=$(which chromedriver)
@@ -25,3 +38,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/site/serenity
           publish_branch: gh-pages
+          force_orphan: true # 🔥 limpia archivos anteriores si había conflictos
