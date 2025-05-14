@@ -1,4 +1,3 @@
-
 # 🧪 UI Automation Framework with Selenium + Cucumber + Serenity
 
 ![UI Tests](https://github.com/bufaale/automation-web-java-maven/actions/workflows/maven.yml/badge.svg)
@@ -6,17 +5,25 @@
 ![Selenium](https://img.shields.io/badge/Selenium-4.10.0-brightgreen)
 ![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)
 
+🔗 **[View Serenity Report (GitHub Pages)](https://bufaale.github.io/automation-web-java-maven/)**
+
+---
 
 ## 🎯 About the Project
 
-This is a professional UI automation framework built with **Selenium WebDriver**, **Cucumber BDD**, **Serenity BDD**, and **JUnit 5**. It supports:
+This is a professional UI automation framework built with **Selenium WebDriver**, **Cucumber BDD**, **Serenity BDD**, and **JUnit 5**. It is designed to showcase clean architecture, SOLID principles, and production-ready automation practices.
 
-- ✅ Parallel execution at the scenario level using JUnit 5
-- 🧱 Clean architecture following SOLID principles
-- 🧪 Utilities and factories for easy and scalable test development
-- 🎭 Integrated Screenplay pattern for advanced automation
-- 🧵 Thread-safe driver handling for concurrent runs in CI/CD
-- 🌐 Full compatibility with GitHub Actions
+Key features:
+
+- ✅ Parallel scenario execution with JUnit 5
+- 🧱 Clean and modular architecture (SOLID)
+- 🔁 Thread-safe WebDriver management
+- 🎭 Screenplay pattern for reusable task modeling
+- 📸 Screenshots on failure embedded in reports
+- 📈 Serenity reports auto-published to GitHub Pages
+- 🔁 GitHub Actions CI/CD integration
+
+---
 
 ## 🚀 Technologies
 
@@ -27,61 +34,86 @@ This is a professional UI automation framework built with **Selenium WebDriver**
 - Cucumber 7.15.0
 - JUnit 5
 
+---
+
 ## 📂 Project Structure
 
 ```
 src/
   main/
     java/starter/
-      core/         # DriverProvider, setup
-      utils/        # ElementUtils, WaitUtils, BrowserUtils, etc.
+      core/         # DriverProvider, context
+      utils/        # ElementUtils, ValidationUtils, BrowserUtils, etc.
       factory/      # PageFactory, ElementFactory
   test/
     java/starter/
-      pages/        # Page objects
-      steps/        # Step definitions
-      hooks/        # Cucumber hooks
-      runner/       # JUnit TestRunner
+      pages/        # Page Objects
+      steps/        # Step Definitions
+      hooks/        # Cucumber Hooks (e.g., driver setup, teardown)
+      runner/       # JUnit Test Runner
 resources/
-  features/         # Gherkin feature files
+  features/         # Gherkin .feature files
   junit-platform.properties
 ```
 
-## ✅ How to Run Tests
+---
+
+## ✅ Running Tests Locally
+
+Run all tests:
 
 ```bash
 mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
 ```
 
-> To run a specific tag:
+Run specific tag:
 
 ```bash
 mvn clean verify -Dcucumber.filter.tags="@Browser"
 ```
 
+---
+
 ## 🧪 Parallel Execution
 
-JUnit 5 + Cucumber 7 configuration supports running scenarios in parallel using:
+Enabled via `junit-platform.properties`:
 
 ```properties
-# src/test/resources/junit-platform.properties
 cucumber.execution.parallel.enabled=true
 cucumber.execution.parallel.config.strategy=dynamic
 cucumber.plugin=io.cucumber.core.plugin.SerenityReporterParallel
 ```
 
-## 📈 Reports
+---
 
-Serenity generates rich HTML reports under:  
-`target/site/serenity/index.html`
+## 📈 Serenity Reports
 
-If any test fails, Surefire logs are uploaded from:  
-`target/surefire-reports/`
+Serenity generates rich HTML reports automatically:  
+📁 `target/site/serenity/index.html`
 
-## 🛠 GitHub Actions CI
+📸 Screenshots on failure:  
+📁 `target/screenshots/`
 
-Automated workflow runs on every `push` and `pull_request` to `main`.  
-See `.github/workflows/ui-tests.yml` for full configuration.
+🪵 Surefire logs:  
+📁 `target/surefire-reports/`
+
+---
+
+## ⚙️ GitHub Actions CI
+
+This repo includes full CI support:
+
+- Trigger: on every `push` or `pull_request` to `main`
+- Runs tests in headless mode
+- Uploads:
+  - ✅ Serenity Report (`target/site/serenity`)
+  - 📸 Screenshots on failure (`target/screenshots`)
+  - 🪵 Surefire logs (`target/surefire-reports`)
+- Deploys the report to GitHub Pages automatically
+
+See workflow file: `.github/workflows/maven.yml`
+
+---
 
 ## 👨‍💻 Author
 
@@ -89,6 +121,6 @@ See `.github/workflows/ui-tests.yml` for full configuration.
 Senior SDET | Java • Selenium • Serenity • RestAssured
 
 ---
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-AlejandroBufarini-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/alejandrobufarini/)
-[![GitHub](https://img.shields.io/badge/GitHub-bufaale-blue?style=flat&logo=github)]
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-AlejandroBufarini-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/alejandrobufarini/)
+[![GitHub](https://img.shields.io/badge/GitHub-bufaale-blue?style=flat&logo=github)](https://github.com/bufaale)
