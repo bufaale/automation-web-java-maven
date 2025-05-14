@@ -1,5 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"Browser","Switch to new tab and return","SUCCESS","2025-05-14T18:21:03.705432086Z[Etc/UTC]","0.0","16.57"
-"Login","Successful login leads to dashboard","SUCCESS","2025-05-14T18:21:03.667533672Z[Etc/UTC]","0.0","16.62"
-"Login","Invalid login","SUCCESS","2025-05-14T18:21:03.684076412Z[Etc/UTC]","0.0","16.57"
-"Login","Valid login","SUCCESS","2025-05-14T18:21:03.695117632Z[Etc/UTC]","0.0","16.58"
