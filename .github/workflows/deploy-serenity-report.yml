@@ -1,7 +1,6 @@
 name: Deploy Serenity Report to GitHub Pages
 
 on:
-  workflow_dispatch:
   workflow_run:
     workflows: ["Run UI Tests"]
     types:
@@ -12,15 +11,21 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇ Download Serenity Report Artifact
+      - name: ⬇ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 📥 Download Serenity Raw Files
         uses: actions/download-artifact@v4
         with:
-          name: serenity-report
+          name: raw-serenity-data
           path: target/site/serenity
+
+      - name: 📊 Aggregate Serenity Report
+        run: mvn serenity:aggregate
 
       - name: 🌱 Deploy Serenity Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -28,4 +33,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/site/serenity
           publish_branch: gh-pages
-          force_orphan: true
