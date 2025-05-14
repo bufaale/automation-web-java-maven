@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.UUID;
 
 public class WebDriverFactory {
 
@@ -19,9 +20,16 @@ public class WebDriverFactory {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        // 👇 Modo headless si se desea desde variable de entorno o config externa
+        // 👇 Safe unique Chrome profile per thread (CI-friendly)
+        try {
+            String uniqueDir = Files.createTempDirectory("chrome-profile-" + UUID.randomUUID()).toString();
+            options.addArguments("--user-data-dir=" + uniqueDir);
+        } catch (IOException e) {
+            System.err.println("❗ Failed to create isolated profile dir: " + e.getMessage());
+        }
+
         if (isHeadlessEnabled()) {
-            options.addArguments("--headless=new"); // usar headless moderno
+            options.addArguments("--headless=new");
         }
 
         WebDriver driver = new ChromeDriver(options);
