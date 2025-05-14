@@ -38,4 +38,8 @@ public class LoginPage extends PageBase {
         WebElement flash = wait.waitForVisibility(By.id("flash"), timeout);
         return flash.getText().trim();
     }
+
+    public String getTitle() {
+        return driver.getTitle();
+    }
 }

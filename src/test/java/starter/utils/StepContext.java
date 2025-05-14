@@ -1,16 +1,22 @@
 package starter.utils;
 
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.WebDriver;
 
 import static starter.core.driver.DriverProvider.getDriver;
 
 public class StepContext {
+    private static final ThreadLocal<Scenario> currentScenario = new ThreadLocal<>();
 
-    private StepContext() {
-        // prevent instantiation
+    public static void setScenario(Scenario scenario) {
+        currentScenario.set(scenario);
     }
 
-    public static WebDriver getDriver() {
-        return getDriver();
+    public static Scenario getScenario() {
+        return currentScenario.get();
+    }
+
+    public static void clear() {
+        currentScenario.remove();
     }
 }

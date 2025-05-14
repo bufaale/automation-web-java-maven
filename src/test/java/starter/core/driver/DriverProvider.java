@@ -7,11 +7,11 @@ public class DriverProvider {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver initializeDriver() {
+    public static void initializeDriver() {
         if (driver.get() == null) {
             driver.set(WebDriverFactory.create());
         }
-        return driver.get();
+        driver.get();
     }
 
     public static WebDriver getDriver() {
