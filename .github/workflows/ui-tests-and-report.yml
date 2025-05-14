@@ -59,6 +59,9 @@ jobs:
           name: raw-serenity-data
           path: target/site/serenity
 
+      - name: 🐛 Debug downloaded report
+        run: ls -lh target/site/serenity
+
       - name: 📊 Generate Serenity HTML
         run: mvn serenity:aggregate
 
@@ -68,3 +71,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/site/serenity
           publish_branch: gh-pages
+
