@@ -85,7 +85,6 @@
     <build>
 
         <plugins>
-
             <!-- Reporte Serenity -->
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>

@@ -40,6 +40,13 @@ jobs:
       - name: 🚀 Run UI tests with Maven
         run: mvn clean verify -Dwebdriver.chrome.driver=$(which chromedriver)
 
+      - name: 📸 Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: target/screenshots
+
       - name: 📤 Upload Serenity Report
         if: always()
         uses: actions/upload-artifact@v4
